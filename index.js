@@ -1,8 +1,10 @@
-//require("dotenv").config();
+require("dotenv").config();
 const express = require("express");
 const app = express();
 const vision = require("@google-cloud/vision");
 var bodyParser = require("body-parser");
+const GOOGLE_APPLICATION_CREDENTIALS =
+  process.env.GOOGLE_APPLICATION_CREDENTIALS;
 // const db = require("db");
 // db.connect({
 //   host: process.env.DB_HOST,
