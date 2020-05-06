@@ -29,7 +29,13 @@ app.post("/google-vision", cors(), (req, res) => {
   async function quickstart() {
     const imageUrl = req.body.imageUrl;
     // Create a client
-    const client = new vision.ImageAnnotatorClient();
+    const client = new vision.ImageAnnotatorClient({
+      projectId: process.env.GOOGLE_PROJECT_ID,
+      credentials: {
+        private_key: process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, "\n"),
+        client_email: process.env.GOOGLE_CLIENT_EMAIL,
+      },
+    });
 
     // Performs label detection on the image file
     const [result] = await client.labelDetection(imageUrl);
